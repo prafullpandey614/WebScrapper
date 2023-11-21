@@ -17,8 +17,7 @@ def extract_data(url):
         soup = BeautifulSoup(response.content, 'html.parser')
         blog_posts = soup.find_all('div', class_='wrap')
 
-        data = []  # List to store extracted data
-
+        data = []  
         for post in blog_posts:
             try:
                 title = post.find('div', class_='content').find('h6').find('a').text.strip()
@@ -33,7 +32,7 @@ def extract_data(url):
             })
             except Exception as e:
                 print("Some Exception occurred ",e)
-            # Append data to the list
+            
             
                 return data
         return data
@@ -42,13 +41,13 @@ def extract_data(url):
         print(f"Failed to retrieve the page. Status code: {response.status_code}")
         return None
 
-# Specify the base URL and page number
+
 base_url = "https://rategain.com/blog"
 page_number = 1
 
-all_data = []  # List to store data from all pages
+all_data = []  
 
-# Loop through pages
+
 while True:
     target_url = f"{base_url}/page/{page_number}"
     print(f"Scraping data from page {page_number}...")
@@ -64,7 +63,6 @@ while True:
 # Create a DataFrame from the list of data
 df = pd.DataFrame(all_data)
 
-# Save the DataFrame to an Excel file
 excel_file_path = "scraped_data.xlsx"
 df.to_excel(excel_file_path, index=False)
 
