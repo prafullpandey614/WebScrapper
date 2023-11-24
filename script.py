@@ -63,7 +63,7 @@ while True:
 # Create a DataFrame from the list of data
 df = pd.DataFrame(all_data)
 
-excel_file_path = "scraped_data.xlsx"
+excel_file_path = "app/static/app/scraped_data.xlsx"
 df.to_excel(excel_file_path, index=False)
 
 print(f"Data saved to {excel_file_path}")
